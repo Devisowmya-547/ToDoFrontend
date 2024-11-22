@@ -1,0 +1,219 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background-color: #f4f4f4;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+input,
+textarea,
+select,
+button {
+  font-size: 16px;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+input[type="text"],
+textarea,
+select,
+button {
+  width: 100%;
+}
+
+/* Light Theme */
+.light {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.light .task-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.light button {
+  background-color: #007bff;
+  color: white;
+}
+
+.light .task-actions button {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.light input[type="checkbox"]:checked + span {
+  text-decoration: line-through;
+}
+
+/* Dark Theme */
+.dark {
+  background-color: #333;
+  color: #f4f4f4;
+}
+
+.dark .task-item {
+  background-color: #444;
+  border: 1px solid #666;
+}
+
+.dark button {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.dark .task-actions button {
+  background-color: #c0392b;
+  color: white;
+}
+
+.dark input[type="checkbox"]:checked + span {
+  text-decoration: line-through;
+  color: #bbb;
+}
+
+/* Task List Styles */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin: 10px 0;
+  width: 80%;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.task-item span {
+  font-weight: bold;
+  flex: 1;
+}
+
+.task-actions button {
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+/* Task Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+textarea,
+select,
+button {
+  margin-bottom: 15px;
+}
+
+input[type="datetime-local"] {
+  margin-bottom: 15px;
+}
+
+button {
+  background-color: #3498db;
+  color: white;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+/* Search Bar Styles */
+input[type="text"] {
+  width: 80%;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+/* Theme Toggle Styles */
+button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 18px;
+  background-color: #3498db;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .task-item {
+    width: 90%;
+  }
+
+  form {
+    width: 90%;
+  }
+
+  .task-list {
+    width: 100%;
+  }
+
+  input[type="text"] {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .task-item {
+    width: 95%;
+    font-size: 14px;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  button {
+    padding: 12px;
+    font-size: 16px;
+  }
+}
