@@ -5,43 +5,85 @@ import TaskList from './components/TaskList';
 import SearchBar from './components/SearchBar';
 import ThemeToggle from './components/ThemeToggle';
 import './App.css';
+import DialogueBox from './components/DialogueBox';
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
   const [filteredTasks, setFilteredTasks] = useState([]);
   const [theme, setTheme] = useState('light');
+  const [diagType, setDiagType] = useState('');
+  const [diagMsg, setDiagMsg] = useState('');
+  const [diagOpen, setDiagOpen] = useState(false);
+
+  const exception = ()=>{
+    setDiagMsg(`Unexpected error occurred`)
+    setDiagOpen(true)
+  }
+  const final = () => {
+    setTimeout(() => setDiagOpen(false), 3000);
+    window.location.reload();
+  }
 
   useEffect(() => {
     const getTasks = async () => {
       const tasksData = await fetchTasks();
       setTasks(tasksData);
-      setFilteredTasks(tasksData); // Initialize filteredTasks
+      setFilteredTasks(tasksData); 
     };
     getTasks();
   }, []);
 
   const handleAddTask = async (taskData) => {
-    const newTask = await addTask(taskData);
-    setTasks((prevTasks) => [...prevTasks, newTask]);
-    setFilteredTasks((prevTasks) => [...prevTasks, newTask]);
+    try{
+      const newTask = await addTask(taskData);
+      setTasks((prevTasks) => [...prevTasks, newTask]);
+      setFilteredTasks((prevTasks) => [...prevTasks, newTask]);
+      setDiagMsg(`${taskData.title} addedd successfully`)
+      setDiagOpen(true)
+    }
+    catch{
+      exception()
+    }
+    finally{
+      final()
+    }
   };
 
   const handleDeleteTask = async (taskId) => {
-    // Remove the task from the backend (API)
-    await deleteTask(taskId);
-    // Update tasks and filteredTasks state after deleting
-    const updatedTasks = tasks.filter((task) => task.id !== taskId);
-    setTasks(updatedTasks);
-    setFilteredTasks(updatedTasks); // Update filtered tasks as well
+    try{
+      await deleteTask(taskId);
+      const updatedTasks = tasks.filter((task) => task.id !== taskId);
+      setTasks(updatedTasks);
+      setFilteredTasks(updatedTasks); 
+      setDiagMsg(`Task deleted successfully`)
+      setDiagOpen(true)
+      setDiagType('delete')
+    }
+    catch{
+      exception()
+    }
+    finally{
+      final()
+    }
   };
 
   const handleUpdateTask = async (taskId, updatedTaskData) => {
-    const updatedTask = await updateTask(taskId, updatedTaskData);
-    const updatedTasks = tasks.map((task) => 
-      task.id === taskId ? updatedTask : task
-    );
-    setTasks(updatedTasks);
-    setFilteredTasks(updatedTasks); // Update filteredTasks as well
+    try{
+      const updatedTask = await updateTask(taskId, updatedTaskData);
+      const updatedTasks = tasks.map((task) => 
+        task.id === taskId ? updatedTask : task
+      );
+      setTasks(updatedTasks);
+      setFilteredTasks(updatedTasks); 
+      setDiagMsg(`Task updated successfully`)
+      setDiagOpen(true)
+    }
+    catch{
+      exception()
+    }
+    finally{
+      final()
+    }
   };
 
   const handleSearch = (searchTerm) => {
@@ -65,6 +107,7 @@ const App = () => {
 
   return (
     <div className={theme}>
+      {diagOpen && <DialogueBox msg={diagMsg} type={diagType}/>}
       <ThemeToggle onToggleTheme={toggleTheme} />
       <SearchBar onSearch={handleSearch} />
       <TaskForm onSaveTask={handleAddTask} />
