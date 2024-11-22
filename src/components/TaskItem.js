@@ -7,12 +7,12 @@ const TaskItem = ({ task, onToggleComplete, onDelete }) => {
         <input
           type="checkbox"
           checked={task.completed}
-          onChange={() => onToggleComplete(task.id)} // Toggle task completion
+          onChange={() => onToggleComplete(task._id)} // Toggle task completion
         />
         <span>{task.title}</span>
       </div>
       <div className="task-actions">
-        <button onClick={() => onDelete(task.id)}>Delete</button> {/* Delete task */}
+        <button onClick={() => onDelete(task._id)}>Delete</button> {/* Delete task */}
       </div>
     </div>
   );
