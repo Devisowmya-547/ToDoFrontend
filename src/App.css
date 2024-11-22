@@ -217,3 +217,16 @@ button:hover {
     font-size: 16px;
   }
 }
+
+/*Dialog box CSS*/
+
+.dialog{
+  position: absolute;
+  top: 50px;
+  right: 20px;
+}
+
+.dialog h3{
+  border-radius: 10px;
+  padding: 15px;
+}
