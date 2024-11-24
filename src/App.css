@@ -36,8 +36,9 @@ button {
 
 /* Light Theme */
 .light {
-  background-color: #f4f4f4;
+  background-color: skyblue;
   color: #333;
+  height: 100vh;
 }
 
 .light .task-item {
@@ -63,6 +64,7 @@ button {
 .dark {
   background-color: #333;
   color: #f4f4f4;
+  height: 100vh;
 }
 
 .dark .task-item {
@@ -85,6 +87,155 @@ button {
   color: #bbb;
 }
 
+/*Common for both themes*/
+.container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  /* grid-template-columns: 1fr 1fr; */
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes moveRight {
+  0%{
+    left: 0;
+  }
+  50%{
+    left: 50%;
+  }
+  100%{
+    right: 0;
+  }
+}
+
+@keyframes moveLeft {
+  0%{
+    right: 0;
+  }
+  50%{
+    right: 50%;
+  }
+  100%{
+    left: 0;
+  }
+}
+
+@keyframes leftintro{
+  0%{
+    transform: translateX(-100%)
+  }
+  50%{
+    transform: translateX(-50%);
+  }
+  100%{
+    transform: translateX(0);
+  }
+}
+
+@keyframes rightintro{
+  0%{
+    transform: translateX(100%)
+  }
+  50%{
+    transform: translateX(50%);
+  }
+  100%{
+    transform: translateX(0);
+  }
+}
+
+#centerToggle{
+  padding: 20px;
+}
+
+.viewLeft, .viewRight{
+  display: flex;
+  width: 50%;
+  position: relative;
+  background: white;
+  border-radius: 5px;
+}
+
+.viewLeft button, .viewRight button{
+  background: none;
+  color: black;
+  z-index: 2;
+  margin: 0;
+}
+
+.light .viewLeft::before{
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+  background: #007bff;
+  border-radius: 5px;
+  content: '';
+  top: 0;
+  animation: moveLeft forwards .5s linear;
+}
+
+.light .viewRight::before{
+  
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+  background: #007bff;
+  border-radius: 5px;
+  content: '';
+  top: 0;
+  animation: moveRight forwards .5s linear;
+}
+
+.dark .viewLeft::before{
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+  background: #2ecc71;
+  border-radius: 5px;
+  content: '';
+  top: 0;
+  animation: moveLeft forwards .5s linear;
+}
+
+.dark .viewRight::before{
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+  background: #2ecc71;
+  border-radius: 5px;
+  content: '';
+  top: 0;
+  animation: moveRight forwards .5s linear;
+}
+
+.taskForm{
+  width: 100%;
+  margin: 20px;
+  padding: 20px;
+}
+
+#hiden{
+  display: none;
+}
+
+#leftintro{
+  animation: leftintro forwards linear .2s;
+}
+
+#rightintro{
+  animation: rightintro forwards linear .2s;
+}
+
+.taskView{
+  width: 100%;
+  margin: 20px;
+}
+
 /* Task List Styles */
 .task-list {
   display: flex;
@@ -93,7 +244,7 @@ button {
   margin-top: 20px;
 }
 
-.task-item {
+.task-item, .task-item-completed{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -104,9 +255,26 @@ button {
   transition: all 0.3s ease;
 }
 
-.task-item span {
-  font-weight: bold;
-  flex: 1;
+.task-item-completed{
+  text-decoration: line-through;
+  background: white;
+}
+
+.taskHolder{
+  display: flex;
+}
+
+#pending{
+  background: rgb(255, 79, 79);
+}
+
+.taskStatus{
+  transform: scale(2);
+}
+
+.taskContent{
+  margin-left: 20px;
+  justify-items: left;
 }
 
 .task-actions button {
@@ -122,7 +290,7 @@ form {
   align-items: center;
   background-color: #fff;
   padding: 20px;
-  margin: 20px auto;
+  margin: auto;
   border-radius: 8px;
   width: 80%;
   max-width: 500px;
@@ -147,7 +315,7 @@ button {
 }
 
 button:hover {
-  background-color: #2980b9;
+  text-shadow: 0 5px 10px black;
 }
 
 /* Search Bar Styles */
@@ -173,10 +341,6 @@ button {
   background-color: #3498db;
   color: white;
   transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #2980b9;
 }
 
 /* Media Queries for Responsiveness */
@@ -229,4 +393,11 @@ button:hover {
 .dialog h3{
   border-radius: 10px;
   padding: 15px;
+}
+
+
+/*theme toggle*/
+#theme_toggle{
+  background: none;
+  position: absolute;
 }

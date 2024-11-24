@@ -1,10 +1,11 @@
-// src/api/api.js
+import Cookies from 'js-cookie'
 
-const API_URL = 'http://localhost:5000/api/tasks'; // Replace with your backend API URL
+const API_URL = `${process.env.REACT_APP_BASE_URL}/tasks`;
+
 
 // Fetch all tasks
 export const fetchTasks = async () => {
-  const response = await fetch(API_URL);
+  const response = await fetch(`${API_URL}/${Cookies.get('email')}`);
   const data = await response.json();
   return data;
 };
