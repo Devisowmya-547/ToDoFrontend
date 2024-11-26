@@ -115,12 +115,12 @@ const App = () => {
   return (
     <Router>
       <Routes>
-      <Route path='/*' element={<ThemeToggle onToggleTheme={toggleTheme} theme={theme}/>} />
       <Route 
         path='/'
         element={
           Cookies.get('email') === undefined ? <Login/> :
           <div className={theme}>
+            <center><h1>Task Tracker</h1></center>
             <center id='centerToggle'>
               <div className={left ? 'viewLeft' : 'viewRight'}>
                 <button onClick={() => {setLeft(true)}}>Add Task</button>

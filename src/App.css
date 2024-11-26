@@ -92,7 +92,6 @@ button {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  /* grid-template-columns: 1fr 1fr; */
   align-items: center;
   justify-content: center;
 }
@@ -213,10 +212,15 @@ button {
   animation: moveRight forwards .5s linear;
 }
 
+.light, .dark{
+  &>center h1{
+    padding: 10px;
+  }
+}
+
 .taskForm{
   width: 100%;
   margin: 20px;
-  padding: 20px;
 }
 
 #hiden{
@@ -291,6 +295,8 @@ form {
   background-color: #fff;
   padding: 20px;
   margin: auto;
+  padding-bottom: 0;
+  margin-bottom: 0;
   border-radius: 8px;
   width: 80%;
   max-width: 500px;
@@ -398,7 +404,18 @@ button {
 
 
 /*theme toggle*/
-#theme_toggle{
+#theme_toggle_switch{
+  position: 'fixed';
+  transform: 'rotate(180deg)';
+  top: '20px';
+  right: '60px';
+  scale: '2';
+}
+
+#logout{
   background: none;
-  position: absolute;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  transform: scale(2);
 }
