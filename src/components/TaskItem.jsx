@@ -9,7 +9,7 @@ const TaskItem = ({ task, onToggleComplete, onDelete }) => {
   const time = dateobj.toLocaleTimeString(); 
 
   return (
-    <div className={`task-item${status ? '-completed' : ''}`} id={dateobj > curr ? 'pending' : ''}>
+    <div className={`task-item${status ? '-completed' : ''}`} id={dateobj <= curr ? 'pending' : ''}>
       <div className='taskHolder'>
         <input
           type="checkbox"
